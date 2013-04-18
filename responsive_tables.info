@@ -1,0 +1,8 @@
+name = Responsive tables
+description = Zurb responsive tables
+core = 7.x
+dependencies[] = views
+
+files[] = responsive_tables.module
+files[] = responsive_tables.views.inc
+files[] = responsive_tables_plugin_style_responsive_table.inc

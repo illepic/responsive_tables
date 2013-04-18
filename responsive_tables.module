@@ -1,0 +1,29 @@
+<?php
+/**
+ * @file responsive_tables.module
+ * Enable zurb responsive tables as a display type
+ */
+
+/**
+ * Implementation of hook_views_api().
+ */
+function responsive_tables_views_api() {
+  return array(
+    'api' => 3.0,
+  );
+}
+
+/**
+ * Uses hook_preprocess_views_view_tabl() because we're actually just using the tables display
+ */
+function responsive_tables_preprocess_views_view_table(&$vars) {
+  // hook just views that have our style plugin
+  if ($vars['view']->style_plugin->plugin_name){
+    // add the class that zurb wants
+    $vars['classes_array'][] = 'responsive';
+    // add the css that zurb expects
+    drupal_add_css(drupal_get_path('module', 'responsive_tables') . '/zurb/responsive-tables.css');
+    // add the slightly modified js that zurb wants
+    drupal_add_js(drupal_get_path('module', 'responsive_tables') . '/zurb/responsive-tables.js');
+  }
+}
